@@ -11,6 +11,7 @@
 		"build": "astro build",
 		"preview": "astro preview",
 		"deploy": "astro build && wrangler deploy",
+		"deploy:ci": "wrangler deploy",
 		"typecheck": "astro check",
 		"bootstrap": "emdash init && emdash seed",
 		"seed": "emdash seed"
