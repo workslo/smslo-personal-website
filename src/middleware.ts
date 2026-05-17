@@ -7,13 +7,13 @@ const SECURITY_HEADERS: Record<string, string> = {
 	"Permissions-Policy": "camera=(), microphone=(), geolocation=()",
 };
 
-// Applied to all public routes; excluded from /_emdash/ admin to avoid
+// Applied to all public routes; excluded only from /_emdash/admin to avoid
 // breaking the CMS UI (which may require relaxed CSP for its editor).
 export const onRequest = defineMiddleware(async (context, next) => {
 	const response = await next();
 
 	const { pathname } = context.url;
-	if (pathname.startsWith("/_emdash")) {
+	if (pathname === "/_emdash/admin" || pathname.startsWith("/_emdash/admin/")) {
 		return response;
 	}
 
