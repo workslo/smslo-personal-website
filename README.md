@@ -1,10 +1,6 @@
-# EmDash Blog Template (Cloudflare)
+# smslo-personal-website
 
-A clean, minimal blog built with [EmDash](https://github.com/emdash-cms/emdash) and deployed on Cloudflare Workers with D1 and R2.
-
-[![Deploy to Cloudflare](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/emdash-cms/templates/tree/main/blog-cloudflare)
-
-![Blog template homepage](https://raw.githubusercontent.com/emdash-cms/emdash/main/assets/templates/blog/latest/homepage-light-desktop.jpg)
+Shane Slosar's personal site. A blog built on [EmDash](https://github.com/emdash-cms/emdash) (Astro CMS), deployed on Cloudflare Workers with D1 and R2.
 
 ## What's Included
 
@@ -30,23 +26,18 @@ A clean, minimal blog built with [EmDash](https://github.com/emdash-cms/emdash) 
 | Static pages | `/pages/:slug` |
 | 404 | fallback |
 
-## Screenshots
-
-| | Desktop | Mobile |
-|---|---|---|
-| Light | ![homepage light desktop](https://raw.githubusercontent.com/emdash-cms/emdash/main/assets/templates/blog/latest/homepage-light-desktop.jpg) | ![homepage light mobile](https://raw.githubusercontent.com/emdash-cms/emdash/main/assets/templates/blog/latest/homepage-light-mobile.jpg) |
-| Dark | ![homepage dark desktop](https://raw.githubusercontent.com/emdash-cms/emdash/main/assets/templates/blog/latest/homepage-dark-desktop.jpg) | ![homepage dark mobile](https://raw.githubusercontent.com/emdash-cms/emdash/main/assets/templates/blog/latest/homepage-dark-mobile.jpg) |
-
 ## Infrastructure
 
 - **Runtime:** Cloudflare Workers
 - **Database:** D1
 - **Storage:** R2
 - **Framework:** Astro with `@astrojs/cloudflare`
+- **Security headers:** Astro middleware (`src/middleware.ts`)
+- **CI/CD:** GitHub Actions (`.github/workflows/ci.yml`, `deploy.yml`) — typecheck + build on PRs, Wrangler deploy on push to `main`
 
 ## Local Development
 
-**Requires [bun](https://bun.sh) ≥ 1.2.**
+**Requires [bun](https://bun.sh) ≥ 1.2.** A `preinstall` guard blocks `npm` and `yarn`.
 
 ```bash
 bun install
@@ -64,10 +55,8 @@ The dev server runs at `http://localhost:4321`. The EmDash admin UI is at `http:
 bun run deploy
 ```
 
-Or click the deploy button above to set up the project in your Cloudflare account.
+CI/CD: push to `main` triggers `.github/workflows/deploy.yml`, which runs `wrangler deploy` via `cloudflare/wrangler-action` using `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID` repo secrets.
 
 ## See Also
 
-- [Node.js variant](../blog) -- same template using SQLite and local file storage
-- [All templates](../)
 - [EmDash documentation](https://github.com/emdash-cms/emdash/tree/main/docs)
