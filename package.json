@@ -11,7 +11,7 @@
 		"seed": "seed/seed.json"
 	},
 	"scripts": {
-		"preinstall": "bun -e \"if (process.env.npm_execpath && !process.env.npm_execpath.includes('bun')) { console.error('\\n⚠️  Use bun to install dependencies: bun install\\n'); process.exit(1); }\"",
+		"preinstall": "case \"$npm_config_user_agent\" in *bun*) ;; *) echo \"\\n⚠️  Use bun to install dependencies: bun install\\n\" >&2; exit 1;; esac",
 		"dev": "emdash dev",
 		"build": "astro build",
 		"preview": "astro preview",
