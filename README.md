@@ -46,16 +46,22 @@ A clean, minimal blog built with [EmDash](https://github.com/emdash-cms/emdash) 
 
 ## Local Development
 
+**Requires [bun](https://bun.sh) ≥ 1.2.**
+
 ```bash
-pnpm install
-pnpm bootstrap
-pnpm dev
+bun install
+bun run bootstrap   # first-time only: runs migrations + seeds DB
+bun run dev         # starts dev server with migrations + type generation
 ```
+
+The dev server runs at `http://localhost:4321`. The EmDash admin UI is at `http://localhost:4321/_emdash/admin`.
+
+> `bun run dev` wraps `emdash dev`, which runs DB migrations and regenerates TypeScript types before starting Astro. Use it instead of `astro dev` directly.
 
 ## Deploying
 
 ```bash
-pnpm deploy
+bun run deploy
 ```
 
 Or click the deploy button above to set up the project in your Cloudflare account.

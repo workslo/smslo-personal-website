@@ -4,6 +4,7 @@ dist
 .wrangler
 uploads
 data.db
+package-lock.json
 
 # Environment / Wrangler secrets
 .env
